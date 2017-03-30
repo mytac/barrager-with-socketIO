@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width: 100%;
+            height: 2000px;
+        }
+    </style>
+    <link rel="stylesheet" href="static/css/barrager.css">
+</head>
+<body>
+<script src="static/js/jquery-1.9.1.min.js"></script>
+<script src="dist/js/jquery.barrager.js"></script>
+<script src="//cdn.bootcss.com/socket.io/1.7.3/socket.io.js"></script>
+<script>
+    const socket = io('http://localhost');
+    let mockData =
+        {
+            'img': 'static/img/cute.png', //图片
+            'info': '请填写弹幕文字', //文字
+            'href': '', //链接
+            'close': true, //显示关闭按钮
+            'speed': 8, //延迟,单位秒,默认8
+            'color': '#ffffff', //颜色,默认白色
+            'old_ie_color': '#ffffff', //ie低版兼容色,不能与网页背景相同,默认黑色
+        }
+
+    //每条弹幕发送间隔
+    const looper_time = 3 * 1000;
+    //是否首次执行
+    let run_once = true;
+    do_barrager();
+    function do_barrager() {
+        if (run_once) {
+            //如果是首次执行,则设置一个定时器,并且把首次执行置为false
+            looper = setInterval(do_barrager, looper_time);
+            run_once = false;
+        }
+        //是否有数据
+        if (mockData) {
+            $('body').barrager(mockData);
+        }
+    }
+
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: '343546464' });
+    });
+</script>
+</body>
+</html>
