@@ -15,7 +15,7 @@ and you will see in your shell
 listening on http://localhost:3000
 ````
 open [this](http://localhost:3000) on your browser,and you will see
-![]()
+![example](https://github.com/mytac/barrager-with-socketIO/blob/master/example/example.gif)
 
 it is realtime
 ### config
