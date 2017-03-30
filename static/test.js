@@ -3,7 +3,7 @@
  */
 const socket = io('http://localhost:3000');
  //每条弹幕发送间隔
- const looper_time = 3 * 1000;
+ const looper_time = 3000/*3 * 1000*/;
  //是否首次执行
  let run_once = true;
  let mockData =
@@ -27,7 +27,7 @@ const socket = io('http://localhost:3000');
  }
  //获取
  //是否有数据
- if (mockData) {
+ if (data) {
  $('body').barrager(data);
  }
  }
